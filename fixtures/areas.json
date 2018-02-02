@@ -1,0 +1,69 @@
+{
+  "data": [
+    {
+      "surfline_id": "4716",
+      "name": "North America",
+      "id": 1
+    },
+    {
+      "surfline_id": "4710",
+      "name": "Central America",
+      "id": 2
+    },
+    {
+      "surfline_id": "4711",
+      "name": "South America",
+      "id": 3
+    },
+    {
+      "surfline_id": "4707",
+      "name": "Caribbean",
+      "id": 4
+    },
+    {
+      "surfline_id": "4712",
+      "name": "Europe",
+      "id": 5
+    },
+    {
+      "surfline_id": "54137",
+      "name": "Middle East",
+      "id": 6
+    },
+    {
+      "surfline_id": "4715",
+      "name": "Africa",
+      "id": 7
+    },
+    {
+      "surfline_id": "4709",
+      "name": "Indian Ocean",
+      "id": 8
+    },
+    {
+      "surfline_id": "4705",
+      "name": "Asia",
+      "id": 9
+    },
+    {
+      "surfline_id": "4713",
+      "name": "Australia",
+      "id": 10
+    },
+    {
+      "surfline_id": "4714",
+      "name": "New Zealand",
+      "id": 11
+    },
+    {
+      "surfline_id": "4706",
+      "name": "Pacific Islands",
+      "id": 12
+    },
+    {
+      "surfline_id": "107392",
+      "name": "WCT Events",
+      "id": 13
+    }
+  ]
+}
