@@ -13,7 +13,7 @@ type Client struct {
 	httpClient *http.Client
 }
 
-type Payload struct {
+type payload struct {
 	Data []Area
 }
 
@@ -29,24 +29,24 @@ func DefaultClient() (*Client, error) {
 		return nil, err
 	}
 
-	userAgent := "Dev Client"
+	userAgent := "SurflineR Client"
 	httpClient := http.DefaultClient
 
 	return &Client{BaseURL: url, UserAgent: userAgent, httpClient: httpClient}, err
 }
 
-func (c *Client) ListAreas() (Payload, error) {
+func (c *Client) ListAreas() ([]Area, error) {
 	rel := &url.URL{Path: "/api/areas"}
 	u := c.BaseURL.ResolveReference(rel)
 	resp, err := c.get(u)
 	if err != nil {
-		return Payload{}, err
+		return nil, err
 	}
 	defer resp.Body.Close()
 
-	var p Payload
+	var p payload
 	err = json.NewDecoder(resp.Body).Decode(&p)
-	return p, err
+	return p.Data, err
 }
 
 func (c *Client) get(u *url.URL) (*http.Response, error) {
