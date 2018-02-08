@@ -15,7 +15,7 @@ type Client struct {
 	httpClient *http.Client
 }
 
-type payloadA struct {
+type pA struct {
 	Data []Area `json:"data"`
 }
 
@@ -25,7 +25,7 @@ type Area struct {
 	Name string `json:"name"`
 }
 
-type payloadR struct {
+type pR struct {
 	Data []Region `json:"data"`
 }
 
@@ -35,7 +35,7 @@ type Region struct {
 	Name string `json:"name"`
 }
 
-type payloadSR struct {
+type pSR struct {
 	Data []SubRegion `json:"data"`
 }
 
@@ -69,7 +69,7 @@ func (c *Client) ListAreas() ([]Area, error) {
 	}
 	defer resp.Body.Close()
 
-	var p payloadA
+	var p pA
 	err = json.NewDecoder(resp.Body).Decode(&p)
 	return p.Data, err
 }
@@ -85,7 +85,7 @@ func (c *Client) ListRegions(areaID string) ([]Region, error) {
 	}
 	defer resp.Body.Close()
 
-	var p payloadR
+	var p pR
 	err = json.NewDecoder(resp.Body).Decode(&p)
 	return p.Data, err
 }
@@ -101,7 +101,7 @@ func (c *Client) ListSubRegions(areaID string, regionID string) ([]SubRegion, er
 	}
 	defer resp.Body.Close()
 
-	var p payloadSR
+	var p pSR
 	err = json.NewDecoder(resp.Body).Decode(&p)
 	return p.Data, err
 }

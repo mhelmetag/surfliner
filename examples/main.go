@@ -10,11 +10,13 @@ func main() {
 	client, err := surfliner.DefaultClient()
 	if err != nil {
 		fmt.Printf("Error building Client: %v", err)
+		return
 	}
 
 	areas, err := client.ListAreas()
 	if err != nil {
 		fmt.Printf("Error fetching Areas: %v", err)
+		return
 	}
 
 	fmt.Print("Fetching Areas...\n")
@@ -27,6 +29,7 @@ func main() {
 	regions, err := client.ListRegions(area.ID)
 	if err != nil {
 		fmt.Printf("Error fetching Regions: %v\n", err)
+		return
 	}
 
 	fmt.Printf("Fetching Regions for Area '%s'...\n", area.Name)
@@ -39,6 +42,7 @@ func main() {
 	sregions, err := client.ListSubRegions(area.ID, region.ID)
 	if err != nil {
 		fmt.Printf("Error fetching Regions: %v\n", err)
+		return
 	}
 
 	fmt.Printf("Fetching SubRegions for Region '%s'...\n", region.Name)
