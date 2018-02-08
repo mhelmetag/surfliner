@@ -1,6 +1,6 @@
 # SurflineR
 
-An API client for fetching Areas, Regions and Sub Regions from the Surfline Regions API.
+Go Client for the Surfline Regions API.
 
 ## Installation
 

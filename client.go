@@ -47,7 +47,7 @@ type SubRegion struct {
 
 // DefaultClient returns a default configured SurflineR Client.
 func DefaultClient() (*Client, error) {
-	url, err := url.Parse("http://localhost:4000")
+	url, err := url.Parse("http://surfliner.maxworld.tech")
 	if err != nil {
 		return nil, err
 	}
