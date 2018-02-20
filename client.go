@@ -15,32 +15,12 @@ type Client struct {
 	httpClient *http.Client
 }
 
-type pA struct {
-	Data []Area `json:"data"`
+type dP struct {
+	Data []Place `json:"data"`
 }
 
-// Area is the first tier in the Surfline spot hierarchy.
-type Area struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
-}
-
-type pR struct {
-	Data []Region `json:"data"`
-}
-
-// Region is the second tier in the Surfline spot hierarchy.
-type Region struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
-}
-
-type pSR struct {
-	Data []SubRegion `json:"data"`
-}
-
-// SubRegion is the third tier in the Surfline spot hierarchy.
-type SubRegion struct {
+// Place can either be an Area, Region or SubRegion.
+type Place struct {
 	ID   string `json:"id"`
 	Name string `json:"name"`
 }
@@ -60,7 +40,7 @@ func DefaultClient() (*Client, error) {
 }
 
 // ListAreas returns all Surfline Areas.
-func (c *Client) ListAreas() ([]Area, error) {
+func (c *Client) ListAreas() ([]Place, error) {
 	rel := &url.URL{Path: "/api/areas"}
 	u := c.BaseURL.ResolveReference(rel)
 	resp, err := c.get(u)
@@ -69,13 +49,13 @@ func (c *Client) ListAreas() ([]Area, error) {
 	}
 	defer resp.Body.Close()
 
-	var p pA
+	var p dP
 	err = json.NewDecoder(resp.Body).Decode(&p)
 	return p.Data, err
 }
 
 // ListRegions returns all Surfline Regions for an Area.
-func (c *Client) ListRegions(areaID string) ([]Region, error) {
+func (c *Client) ListRegions(areaID string) ([]Place, error) {
 	path := fmt.Sprintf("/api/areas/%s/regions", areaID)
 	rel := &url.URL{Path: path}
 	u := c.BaseURL.ResolveReference(rel)
@@ -85,13 +65,13 @@ func (c *Client) ListRegions(areaID string) ([]Region, error) {
 	}
 	defer resp.Body.Close()
 
-	var p pR
+	var p dP
 	err = json.NewDecoder(resp.Body).Decode(&p)
 	return p.Data, err
 }
 
 // ListSubRegions returns all Surfline SubRegions for a Region.
-func (c *Client) ListSubRegions(areaID string, regionID string) ([]SubRegion, error) {
+func (c *Client) ListSubRegions(areaID string, regionID string) ([]Place, error) {
 	path := fmt.Sprintf("/api/areas/%s/regions/%s/subregions", areaID, regionID)
 	rel := &url.URL{Path: path}
 	u := c.BaseURL.ResolveReference(rel)
@@ -101,7 +81,7 @@ func (c *Client) ListSubRegions(areaID string, regionID string) ([]SubRegion, er
 	}
 	defer resp.Body.Close()
 
-	var p pSR
+	var p dP
 	err = json.NewDecoder(resp.Body).Decode(&p)
 	return p.Data, err
 }
