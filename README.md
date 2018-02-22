@@ -1,5 +1,7 @@
 # SurflineR
 
+[![Build Status](https://travis-ci.org/mhelmetag/surfliner.svg?branch=master)](https://travis-ci.org/mhelmetag/surfliner)
+
 Go Client for the Surfline Regions API.
 
 ## Installation
